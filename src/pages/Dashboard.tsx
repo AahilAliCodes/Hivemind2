@@ -1,6 +1,38 @@
 import React from 'react';
 import BrainCanvas from '../components/BrainModel';
 // Sample activity data
+import { 
+  LineChart, 
+  Users, 
+  ClipboardList, 
+  Network, 
+  Brain 
+} from 'lucide-react';
+
+const NavButton = ({ icon: Icon, text, href }) => (
+  <a
+    href={href}
+    className="flex items-center gap-3 px-4 py-3 rounded-xl
+      bg-gray-800/80 backdrop-blur-sm border border-violet-500/20
+      text-white hover:bg-gray-700/80 hover:border-violet-500/40
+      transition-colors duration-300 shadow-lg hover:shadow-violet-500/20
+      w-full"
+  >
+    <Icon className="w-5 h-5 text-violet-400" />
+    <span>{text}</span>
+  </a>
+);
+
+const SideNavigation = () => (
+  <div className="fixed left-8 top-25 space-y-3 w-48 z-10">
+    <NavButton icon={LineChart} text="Progress" href="/progress" />
+    <NavButton icon={Users} text="Groups" href="/groups" />
+    <NavButton icon={ClipboardList} text="Assessment" href="/assessment" />
+    <NavButton icon={Network} text="Network Balance" href="/network" />
+    <NavButton icon={Brain} text="Hive Intelligence" href="/hive" />
+  </div>
+);
+
 const activityItems = [
   {
     id: 1,
@@ -73,7 +105,7 @@ const BrainIcon = () => (
 );
 
 const UserProfile = () => (
-  <div className="absolute top-6 right-6 flex items-center gap-4 bg-gray-800 p-3 rounded-xl">
+  <div className="absolute top-6 left-7 flex items-center gap-4 bg-gray-800 p-2 rounded-xl">
     <div className="flex flex-col items-end">
       <span className="text-white font-medium">John Doe</span>
       <span className="text-sm text-gray-400">john@example.com</span>
@@ -195,6 +227,7 @@ const Dashboard = () => {
   return (
     <div className="min-h-screen pb-48 bg-gray-900 relative overflow-hidden">
       <WarpBackground />
+      <SideNavigation />
       <UserProfile />
       
       <div className="absolute inset-0 flex flex-col items-center justify-start pt-40">
